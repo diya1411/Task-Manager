@@ -1,12 +1,15 @@
 {
   "name": "frontend",
   "version": "1.0.0",
+  "description": "Frontend for the task management application",
   "main": "index.js",
   "scripts": {
+    "start": "http-server ./src -p 3000 -c-1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "ISC"
 }

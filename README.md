@@ -6,7 +6,7 @@ Welcome to your Fullstack Developer Internship Assignment! This repository is a 
 
 ## 📌 Assignment Overview
 
-As a Fullstack Intern (Backend-focused), your task is to develop a **Task Management System** that allows users to manage tasks via a RESTful API and receive real-time updates via WebSockets. You’ll use MongoDB for data persistence and Docker for containerization.
+As a Fullstack Intern (Backend-focused), your task is to develop a **Task Management System** that allows users to manage tasks via a RESTful API and receive real-time updates via WebSockets. You'll use MongoDB for data persistence and Docker for containerization.
 
 ---
 
@@ -14,19 +14,20 @@ As a Fullstack Intern (Backend-focused), your task is to develop a **Task Manage
 
 You are expected to:
 
-- [ ] Develop a RESTful API for CRUD operations on tasks
-- [ ] Enable real-time task updates via WebSocket
-- [ ] Persist tasks using MongoDB with Mongoose
-- [ ] Containerize the backend and frontend using Docker and Docker Compose
-- [ ] Create a simple frontend to interact with the API and WebSocket
-- [ ] Write modular, clean TypeScript code
-- [ ] Provide clear documentation and setup instructions
+- [x] Develop a RESTful API for CRUD operations on tasks
+- [x] Enable real-time task updates via WebSocket
+- [x] Persist tasks using MongoDB with Mongoose
+- [x] Containerize the backend and frontend using Docker and Docker Compose
+- [x] Create a simple frontend to interact with the API and WebSocket
+- [x] Write modular, clean TypeScript code
+- [x] Provide clear documentation and setup instructions
 
 ---
 
 ## 🛠️ Technologies to Use
 
 **Backend:**
+
 - Node.js
 - Express.js
 - TypeScript
@@ -35,16 +36,17 @@ You are expected to:
 - `uuid`, `dotenv`
 
 **Frontend:**
+
 - HTML, Vanilla JavaScript, CSS
 
 **Containerization:**
+
 - Docker
 - Docker Compose
 
 ---
 
 ## 📁 Project Structure
-
 
 ```
 task-management-system/
@@ -69,32 +71,31 @@ task-management-system/
 └── README.md # Project documentation
 ```
 
-
 ---
 
 ## 🔧 Functional Requirements
 
 ### 📡 REST API Endpoints
 
-| Method | Endpoint         | Description                |
-|--------|------------------|----------------------------|
-| POST   | `/api/tasks`     | Create a new task          |
-| GET    | `/api/tasks`     | Get all tasks              |
-| GET    | `/api/tasks/:id` | Get a task by ID           |
-| PATCH  | `/api/tasks/:id` | Update task status         |
-| DELETE | `/api/tasks/:id` | Delete a task              |
+| Method | Endpoint         | Description        |
+| ------ | ---------------- | ------------------ |
+| POST   | `/api/tasks`     | Create a new task  |
+| GET    | `/api/tasks`     | Get all tasks      |
+| GET    | `/api/tasks/:id` | Get a task by ID   |
+| PATCH  | `/api/tasks/:id` | Update task status |
+| DELETE | `/api/tasks/:id` | Delete a task      |
 
 ### ⚡ WebSocket Events
 
-| Event        | Description                | Payload                  |
-|--------------|----------------------------|--------------------------|
-| `task_created` | When a task is created     | New task object          |
-| `task_updated` | When a task is updated     | Updated task object      |
-| `task_deleted` | When a task is deleted     | `{ id: string }`         |
+| Event          | Description            | Payload             |
+| -------------- | ---------------------- | ------------------- |
+| `task_created` | When a task is created | New task object     |
+| `task_updated` | When a task is updated | Updated task object |
+| `task_deleted` | When a task is deleted | `{ id: string }`    |
 
 ### 🧾 MongoDB Schema
 
-Each task should include:
+Each task includes:
 
 - `id` (string, UUID)
 - `title` (string)
@@ -106,23 +107,22 @@ Each task should include:
 
 ## 🖥️ Frontend Requirements
 
-Your frontend should:
+The frontend implementation:
 
-- [ ] Display all tasks
-- [ ] Create a new task via form
-- [ ] Toggle task status (pending/completed)
-- [ ] Delete a task
-- [ ] Reflect real-time changes using WebSockets
+- [x] Displays all tasks
+- [x] Creates a new task via form
+- [x] Toggles task status (pending/completed)
+- [x] Deletes a task
+- [x] Reflects real-time changes using WebSockets
 
 ---
 
-## 🧪 Bonus (Optional)
+## 🧪 Additional Features
 
-- [ ] Add task filtering (e.g., by status)
-- [ ] Implement basic authentication
-- [ ] Add task categories or priorities
-- [ ] Use Tailwind CSS for styling
-- [ ] Write unit tests for backend APIs
+- [x] Task filtering (by status)
+- [x] API documentation with Swagger UI
+- [x] Comprehensive test coverage
+- [x] Docker containerization
 
 ---
 
@@ -134,65 +134,136 @@ Your frontend should:
 - Docker & Docker Compose
 - npm or yarn
 
-### ⚙️ Setup Instructions
+### ⚙️ Detailed Setup Instructions
 
-1. **Clone the repository (this repo):**
+#### Running with Docker (Recommended)
 
-- After accepting the assignment via GitHub Classroom, clone your personal repository to your local machine:
-     ```bash
-     git clone https://github.com/roguedevs-hq/fullstack-be-intern-your_name.git
-     cd fullstack-be-intern-your_name
-     ```
+1. **Clone the repository:**
 
-2. Create `.env` file in `backend/`:
-```
-MONGO_URI=mongodb://mongo:27017/taskdb
-PORT=5000
-```
+   ```bash
+   git clone https://github.com/roguedevs-hq/fullstack-be-intern-your_name.git
+   cd fullstack-be-intern-your_name
+   ```
 
-3. Run the app using Docker Compose:
+2. **Set up environment variables:**
+   Create a `.env` file in the `backend/` directory:
+
+   ```
+   MONGO_URI=mongodb://mongo:27017/taskdb
+   PORT=5000
+   ```
+
+3. **Build and run the containers:**
+
+   ```bash
+   docker-compose up --build
+   ```
+
+4. **Access the application:**
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - Backend API: [http://localhost:5000/api/tasks](http://localhost:5000/api/tasks)
+   - API Documentation: [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
+
+#### Running Locally (Development)
+
+1. **Backend setup:**
+
+   ```bash
+   cd backend
+   npm install
+   npm run dev
+   ```
+
+2. **Frontend setup:**
+
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+3. **MongoDB setup:**
+   Ensure MongoDB is running locally or set `MONGO_URI` to your MongoDB instance.
+
+### 🧪 Running Tests
+
 ```bash
-docker-compose up --build
+cd backend
+npm test
 ```
 
-4. Access in browser:
-```
-Frontend: http://localhost:3000
-Backend API: http://localhost:5000/api/tasks
+For test coverage:
+
+```bash
+cd backend
+npm test -- --coverage
 ```
 
 ---
 
-## ✅ Submission Guidelines
+## 📚 API Documentation
 
-### 📌 Steps to Submit
+The API documentation is available at `/api-docs` endpoint when the server is running.
 
-1. **Work on the Assignment:**
-   - Implement the backend API, WebSocket integration, and frontend as per the requirements.
-   - Commit your changes regularly with meaningful commit messages:
-     ```bash
-     git add .
-     git commit -m "feat: Implemented task creation API"
-     git push origin main
-     ```
+### API Endpoints Details:
 
-2. **Final Commit:**
-   - Before the submission deadline, ensure all your work is committed and pushed to your personal repository.
-   - Verify that the latest commit includes all required features and documentation.
+#### `POST /api/tasks`
 
-3. **Automatic Submission:**
-   - No manual submission is required — the system will automatically detect your latest commit.
+- Creates a new task
+- Request body: `{ title: string, description?: string }`
+- Response: The created task object with 201 status code
 
-### 📄 What to Include in Your Repository
+#### `GET /api/tasks`
 
-Ensure your repository contains the following:
+- Returns all tasks
+- Query parameters: `status` (optional) - Filter by task status ('pending' or 'completed')
+- Response: Array of task objects
 
-- **Backend:**
-  - Fully implemented RESTful API and WebSocket server.
-  - Dockerfile and Docker Compose configuration for containerization.
-  - `.env` file with necessary environment variables (e.g., `MONGO_URI`, `PORT`)
+#### `GET /api/tasks/:id`
+
+- Returns a single task by ID
+- Response: Task object or 404 if not found
+
+#### `PATCH /api/tasks/:id`
+
+- Updates a task's status
+- Request body: `{ status: 'pending' | 'completed' }`
+- Response: Updated task object or 404 if not found
+
+#### `DELETE /api/tasks/:id`
+
+- Deletes a task
+- Response: Success message with deleted task ID or 404 if not found
+
+### WebSocket Events
+
+Connect to WebSocket at `ws://localhost:5000` to receive real-time updates:
+
+- `task_created`: Emitted when a new task is created
+- `task_updated`: Emitted when a task is updated
+- `task_deleted`: Emitted when a task is deleted
+
+---
+
+## ✨ Implementation Details
+
+### Backend Architecture
+
+- **Express.js**: Handles HTTP requests and routing
+- **MongoDB/Mongoose**: Data persistence
+- **WebSockets**: Real-time updates
+- **TypeScript**: Type safety and better developer experience
+- **Swagger UI**: API documentation
+
+### Frontend Features
+
+- Simple, responsive design
+- Real-time updates via WebSocket
+- Task filtering by status
+- Form validation
+
 ---
 
 ## 🏁 Good Luck!
-We look forward to seeing your implementation!
 
+We look forward to seeing your implementation!

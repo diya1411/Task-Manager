@@ -4,16 +4,42 @@ import { v4 as uuidv4 } from 'uuid';
 import { broadcastEvent } from '../sockets/socket';
 
 export const createTask = async (req: Request, res: Response) => {
-  const { title, description } = req.body;
-  const newTask = new Task({ id: uuidv4(), title, description });
-  await newTask.save();
-  broadcastEvent('task_created', newTask);
-  res.status(201).json(newTask);
+  try {
+    const { title, description } = req.body;
+    
+    // Input validation
+    if (!title || title.trim() === '') {
+      return res.status(400).json({ message: 'Title is required' });
+    }
+    
+    if (title.length > 100) {
+      return res.status(400).json({ message: 'Title must be less than 100 characters' });
+    }
+    
+    if (description && description.length > 500) {
+      return res.status(400).json({ message: 'Description must be less than 500 characters' });
+    }
+    
+    const newTask = new Task({ id: uuidv4(), title, description });
+    await newTask.save();
+    broadcastEvent('task_created', newTask);
+    res.status(201).json(newTask);
+  } catch (error) {
+    res.status(500).json({ message: 'Error creating task', error });
+  }
 };
 
 export const getAllTasks = async (req: Request, res: Response) => {
   try {
-    const tasks = await Task.find();
+    const { status } = req.query;
+    
+    // Filter by status if provided
+    const filter: any = {};
+    if (status && ['pending', 'completed'].includes(status as string)) {
+      filter.status = status;
+    }
+    
+    const tasks = await Task.find(filter);
     res.status(200).json(tasks);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching tasks', error });

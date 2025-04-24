@@ -1,21 +1,31 @@
-import WebSocket from 'ws';
+import { Server } from 'http';
+import { WebSocket, WebSocketServer } from 'ws';
 
-let clients: WebSocket[] = [];
+// Store connected clients
+export const clients: WebSocket[] = [];
 
-export const socketHandler = (wss: WebSocket.Server) => {
+// Socket handler to initialize WebSocket server
+export const socketHandler = (server: Server): void => {
+  const wss = new WebSocketServer({ server });
+  
   wss.on('connection', (ws: WebSocket) => {
-    console.log('Client connected');
+    // Add client to clients array
     clients.push(ws);
     
+    // Remove client when connection is closed
     ws.on('close', () => {
-      clients = clients.filter(client => client !== ws);
-      console.log('Client disconnected');
+      const index = clients.indexOf(ws);
+      if (index !== -1) {
+        clients.splice(index, 1);
+      }
     });
   });
 };
 
-export const broadcastEvent = (event: string, data: any) => {
+// Broadcast event to all connected clients
+export const broadcastEvent = (event: string, data: any): void => {
   const message = JSON.stringify({ event, data });
+  
   clients.forEach(client => {
     if (client.readyState === WebSocket.OPEN) {
       client.send(message);
