@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createTask, getAllTasks, getTaskById, updateTask, deleteTask } from '../controllers/taskController';
+import { createTask, getAllTasks, getTaskById, updateTask, deleteTask } from '../controllers/taskcontroller';
 import { broadcastEvent } from '../sockets/socket';
 
 // Mock dependencies

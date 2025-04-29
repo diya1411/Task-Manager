@@ -4,17 +4,23 @@ services:
     build: ./backend
     ports:
       - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://task-mongo:27017/taskdb
+      - PORT=5000
     volumes:
       - ./backend:/app
-    env_file:
-      - ./backend/.env
+      - /app/node_modules
     depends_on:
       - mongo
+    container_name: task-backend
+    restart: always
 
   mongo:
     image: mongo
     ports:
-      - "27017:27017"
+      - "27018:27017" # Changed port to 27018 to avoid conflict
+    container_name: task-mongo
+    restart: always
 
   frontend:
     build: ./frontend
@@ -22,3 +28,6 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
+    container_name: task-frontend
+    restart: always

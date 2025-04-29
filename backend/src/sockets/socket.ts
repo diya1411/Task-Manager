@@ -5,8 +5,9 @@ import { WebSocket, WebSocketServer } from 'ws';
 export const clients: WebSocket[] = [];
 
 // Socket handler to initialize WebSocket server
-export const socketHandler = (server: Server): void => {
-  const wss = new WebSocketServer({ server });
+export const socketHandler = (server: Server | WebSocketServer): void => {
+  // If server is already a WebSocketServer, use it directly
+  const wss = server instanceof WebSocketServer ? server : new WebSocketServer({ server });
   
   wss.on('connection', (ws: WebSocket) => {
     // Add client to clients array

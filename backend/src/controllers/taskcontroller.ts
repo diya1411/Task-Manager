@@ -3,21 +3,24 @@ import { Task } from '../models/Task';
 import { v4 as uuidv4 } from 'uuid';
 import { broadcastEvent } from '../sockets/socket';
 
-export const createTask = async (req: Request, res: Response) => {
+export const createTask = async (req: Request, res: Response): Promise<void> => {
   try {
     const { title, description } = req.body;
     
     // Input validation
     if (!title || title.trim() === '') {
-      return res.status(400).json({ message: 'Title is required' });
+      res.status(400).json({ message: 'Title is required' });
+      return;
     }
     
     if (title.length > 100) {
-      return res.status(400).json({ message: 'Title must be less than 100 characters' });
+      res.status(400).json({ message: 'Title must be less than 100 characters' });
+      return;
     }
     
     if (description && description.length > 500) {
-      return res.status(400).json({ message: 'Description must be less than 500 characters' });
+      res.status(400).json({ message: 'Description must be less than 500 characters' });
+      return;
     }
     
     const newTask = new Task({ id: uuidv4(), title, description });
@@ -29,7 +32,7 @@ export const createTask = async (req: Request, res: Response) => {
   }
 };
 
-export const getAllTasks = async (req: Request, res: Response) => {
+export const getAllTasks = async (req: Request, res: Response): Promise<void> => {
   try {
     const { status } = req.query;
     
@@ -46,13 +49,14 @@ export const getAllTasks = async (req: Request, res: Response) => {
   }
 };
 
-export const getTaskById = async (req: Request, res: Response) => {
+export const getTaskById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const task = await Task.findOne({ id });
     
     if (!task) {
-      return res.status(404).json({ message: 'Task not found' });
+      res.status(404).json({ message: 'Task not found' });
+      return;
     }
     
     res.status(200).json(task);
@@ -61,13 +65,14 @@ export const getTaskById = async (req: Request, res: Response) => {
   }
 };
 
-export const updateTask = async (req: Request, res: Response) => {
+export const updateTask = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const { status } = req.body;
     
     if (!status || !['pending', 'completed'].includes(status)) {
-      return res.status(400).json({ message: 'Invalid status value' });
+      res.status(400).json({ message: 'Invalid status value' });
+      return;
     }
     
     const updatedTask = await Task.findOneAndUpdate(
@@ -77,7 +82,8 @@ export const updateTask = async (req: Request, res: Response) => {
     );
     
     if (!updatedTask) {
-      return res.status(404).json({ message: 'Task not found' });
+      res.status(404).json({ message: 'Task not found' });
+      return;
     }
     
     broadcastEvent('task_updated', updatedTask);
@@ -87,13 +93,14 @@ export const updateTask = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteTask = async (req: Request, res: Response) => {
+export const deleteTask = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const task = await Task.findOneAndDelete({ id });
     
     if (!task) {
-      return res.status(404).json({ message: 'Task not found' });
+      res.status(404).json({ message: 'Task not found' });
+      return;
     }
     
     broadcastEvent('task_deleted', { id });
