@@ -1,33 +1,29 @@
-# 🚀 Fullstack Developer Intern Assignment: Task Management System
+# 🚀 Task Management System
 
-Welcome to your Fullstack Developer Internship Assignment! This repository is a **starter template** for building a **Task Management System**. Your focus should be primarily on the **backend**, but a minimal frontend is also required to demonstrate your implementation.
-
----
-
-## 📌 Assignment Overview
-
-As a Fullstack Intern (Backend-focused), your task is to develop a **Task Management System** that allows users to manage tasks via a RESTful API and receive real-time updates via WebSockets. You'll use MongoDB for data persistence and Docker for containerization.
+A full-stack task management application featuring a RESTful API with real-time updates via WebSockets. This project demonstrates my backend development skills with a complementary frontend interface.
 
 ---
 
-## 🎯 Objectives
+## 📌 Project Overview
 
-You are expected to:
-
-- [x] Develop a RESTful API for CRUD operations on tasks
-- [x] Enable real-time task updates via WebSocket
-- [x] Persist tasks using MongoDB with Mongoose
-- [x] Containerize the backend and frontend using Docker and Docker Compose
-- [x] Create a simple frontend to interact with the API and WebSocket
-- [x] Write modular, clean TypeScript code
-- [x] Provide clear documentation and setup instructions
+This **Task Management System** allows users to manage tasks via a RESTful API and receive real-time updates via WebSockets. It uses MongoDB for data persistence and Docker for containerization, focusing on modern backend development with a clean, minimal frontend.
 
 ---
 
-## 🛠️ Technologies to Use
+## 🎯 Features
+
+- [x] RESTful API for CRUD operations on tasks
+- [x] Real-time task updates via WebSocket
+- [x] MongoDB with Mongoose for data persistence
+- [x] Docker and Docker Compose containerization
+- [x] Simple frontend to interact with the API and WebSocket
+- [x] Modular, clean TypeScript code
+
+---
+
+## 🛠️ Technologies Used
 
 **Backend:**
-
 - Node.js
 - Express.js
 - TypeScript
@@ -36,40 +32,11 @@ You are expected to:
 - `uuid`, `dotenv`
 
 **Frontend:**
-
-- HTML, Vanilla JavaScript, CSS
+- HTML, JavaScript, CSS
 
 **Containerization:**
-
 - Docker
 - Docker Compose
-
----
-
-## 📁 Project Structure
-
-```
-task-management-system/
-├── backend/
-│ ├── src/
-│ │ ├── controllers/ # Route controllers
-│ │ ├── models/ # MongoDB models
-│ │ ├── routes/ # API routes
-│ │ ├── sockets/ # WebSocket handlers
-│ │ ├── utils/ # Utility functions
-│ │ ├── app.ts # Express application
-│ │ └── server.ts # HTTP/WebSocket server
-│ ├── .env.example # Environment variables template
-│ ├── Dockerfile # Backend container config
-│ └── package.json
-├── frontend/
-│ ├── public/ # Static assets
-│ ├── src/ # Frontend source code
-│ ├── Dockerfile # Frontend container config
-│ └── package.json
-├── docker-compose.yml # Multi-container setup
-└── README.md # Project documentation
-```
 
 ---
 
@@ -105,7 +72,7 @@ Each task includes:
 
 ---
 
-## 🖥️ Frontend Requirements
+## 🖥️ Frontend Features
 
 The frontend implementation:
 
@@ -117,15 +84,6 @@ The frontend implementation:
 
 ---
 
-## 🧪 Additional Features
-
-- [x] Task filtering (by status)
-- [x] API documentation with Swagger UI
-- [x] Comprehensive test coverage
-- [x] Docker containerization
-
----
-
 ## 🚀 Getting Started
 
 ### 📋 Prerequisites
@@ -134,15 +92,15 @@ The frontend implementation:
 - Docker & Docker Compose
 - npm or yarn
 
-### ⚙️ Detailed Setup Instructions
+### ⚙️ Setup Instructions
 
 #### Running with Docker (Recommended)
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/roguedevs-hq/fullstack-be-intern-your_name.git
-   cd fullstack-be-intern-your_name
+   git clone https://github.com/yourusername/task-manager.git
+   cd task-manager
    ```
 
 2. **Set up environment variables:**
@@ -162,7 +120,6 @@ The frontend implementation:
 4. **Access the application:**
    - Frontend: [http://localhost:3000](http://localhost:3000)
    - Backend API: [http://localhost:5000/api/tasks](http://localhost:5000/api/tasks)
-   - API Documentation: [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
 
 #### Running Locally (Development)
 
@@ -185,64 +142,6 @@ The frontend implementation:
 3. **MongoDB setup:**
    Ensure MongoDB is running locally or set `MONGO_URI` to your MongoDB instance.
 
-### 🧪 Running Tests
-
-```bash
-cd backend
-npm test
-```
-
-For test coverage:
-
-```bash
-cd backend
-npm test -- --coverage
-```
-
----
-
-## 📚 API Documentation
-
-The API documentation is available at `/api-docs` endpoint when the server is running.
-
-### API Endpoints Details:
-
-#### `POST /api/tasks`
-
-- Creates a new task
-- Request body: `{ title: string, description?: string }`
-- Response: The created task object with 201 status code
-
-#### `GET /api/tasks`
-
-- Returns all tasks
-- Query parameters: `status` (optional) - Filter by task status ('pending' or 'completed')
-- Response: Array of task objects
-
-#### `GET /api/tasks/:id`
-
-- Returns a single task by ID
-- Response: Task object or 404 if not found
-
-#### `PATCH /api/tasks/:id`
-
-- Updates a task's status
-- Request body: `{ status: 'pending' | 'completed' }`
-- Response: Updated task object or 404 if not found
-
-#### `DELETE /api/tasks/:id`
-
-- Deletes a task
-- Response: Success message with deleted task ID or 404 if not found
-
-### WebSocket Events
-
-Connect to WebSocket at `ws://localhost:5000` to receive real-time updates:
-
-- `task_created`: Emitted when a new task is created
-- `task_updated`: Emitted when a task is updated
-- `task_deleted`: Emitted when a task is deleted
-
 ---
 
 ## ✨ Implementation Details
@@ -253,7 +152,6 @@ Connect to WebSocket at `ws://localhost:5000` to receive real-time updates:
 - **MongoDB/Mongoose**: Data persistence
 - **WebSockets**: Real-time updates
 - **TypeScript**: Type safety and better developer experience
-- **Swagger UI**: API documentation
 
 ### Frontend Features
 
@@ -264,6 +162,9 @@ Connect to WebSocket at `ws://localhost:5000` to receive real-time updates:
 
 ---
 
-## 🏁 Good Luck!
+## 📝 License
 
-We look forward to seeing your implementation!
+MIT
+
+---
+
