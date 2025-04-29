@@ -1,28 +1,26 @@
-# 🚀 Task Management System
+## Task Management System
 
 A full-stack task management application featuring a RESTful API with real-time updates via WebSockets.
 
 ---
 
-## 📌 Project Overview
+### Project Overview
 
 This **Task Management System** allows users to manage tasks via a RESTful API and receive real-time updates via WebSockets. It uses MongoDB for data persistence and Docker for containerization, focusing on modern backend development with a clean, minimal frontend.
 
 ---
 
-## 🎯 Features
-
-- [x] RESTful API for CRUD operations on tasks
-- [x] Real-time task updates via WebSocket
-- [x] MongoDB with Mongoose for data persistence
-- [x] Docker and Docker Compose containerization
-- [x] Simple frontend to interact with the API and WebSocket
-- [x] Modular, clean TypeScript code
+###  Features
+-  RESTful API for CRUD operations on tasks
+-  Real-time task updates via WebSocket
+-  MongoDB with Mongoose for data persistence
+-  Docker and Docker Compose containerization
+-  Simple frontend to interact with the API and WebSocket
+-  Modular, clean TypeScript code
 
 ---
 
-## 🛠️ Technologies Used
-
+### Technologies Used
 **Backend:**
 - Node.js
 - Express.js
@@ -39,10 +37,9 @@ This **Task Management System** allows users to manage tasks via a RESTful API a
 - Docker Compose
 
 ---
+### Functional Requirements
 
-## 🔧 Functional Requirements
-
-### 📡 REST API Endpoints
+### REST API Endpoints
 
 | Method | Endpoint         | Description        |
 | ------ | ---------------- | ------------------ |
@@ -52,7 +49,7 @@ This **Task Management System** allows users to manage tasks via a RESTful API a
 | PATCH  | `/api/tasks/:id` | Update task status |
 | DELETE | `/api/tasks/:id` | Delete a task      |
 
-### ⚡ WebSocket Events
+###  WebSocket Events
 
 | Event          | Description            | Payload             |
 | -------------- | ---------------------- | ------------------- |
@@ -60,7 +57,7 @@ This **Task Management System** allows users to manage tasks via a RESTful API a
 | `task_updated` | When a task is updated | Updated task object |
 | `task_deleted` | When a task is deleted | `{ id: string }`    |
 
-### 🧾 MongoDB Schema
+###  MongoDB Schema
 
 Each task includes:
 
@@ -72,27 +69,27 @@ Each task includes:
 
 ---
 
-## 🖥️ Frontend Features
+### Frontend Features
 
 The frontend implementation:
 
-- [x] Displays all tasks
-- [x] Creates a new task via form
-- [x] Toggles task status (pending/completed)
-- [x] Deletes a task
-- [x] Reflects real-time changes using WebSockets
+-  Displays all tasks
+-  Creates a new task via form
+-  Toggles task status (pending/completed)
+-  Deletes a task
+-  Reflects real-time changes using WebSockets
 
 ---
 
-## 🚀 Getting Started
+### Getting Started
 
-### 📋 Prerequisites
+###  Prerequisites
 
 - Node.js (v16 or higher)
 - Docker & Docker Compose
 - npm or yarn
 
-### ⚙️ Setup Instructions
+###  Setup Instructions
 
 #### Running with Docker (Recommended)
 
@@ -144,7 +141,7 @@ The frontend implementation:
 
 ---
 
-## ✨ Implementation Details
+### Implementation Details
 
 ### Backend Architecture
 
@@ -162,7 +159,7 @@ The frontend implementation:
 
 ---
 
-## 📝 License
+### 📝 License
 
 MIT
 
