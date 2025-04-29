@@ -1,6 +1,6 @@
 # 🚀 Task Management System
 
-A full-stack task management application featuring a RESTful API with real-time updates via WebSockets. This project demonstrates my backend development skills with a complementary frontend interface.
+A full-stack task management application featuring a RESTful API with real-time updates via WebSockets.
 
 ---
 
